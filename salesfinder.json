@@ -1,0 +1,59 @@
+{
+   "configfile" : "/etc/salesfinder.json",
+   "debug" : "",
+   "email" : "",
+   "mailserver" : "",
+   "merchants" : {
+      "BestBuy" : {
+         "base_url" : "https://www.bestbuy.ca/en-ca/product/",
+         "price_delim_end" : "\\,",
+         "price_delim_start" : "priceWithoutEhf\\\":"
+      },
+      "CanadaComputers" : {
+         "base_url" : "https://www.canadacomputers.com/product_info.php?",
+         "price_delim_end" : " ",
+         "price_delim_start" : "newtotal -= "
+      },
+      "NewEgg" : {
+         "base_url" : "https://www.newegg.ca/p/",
+         "price_delim_end" : "'\\]",
+         "price_delim_start" : "product_sale_price:\\['"
+      }
+   },
+   "notify" : "",
+   "products" : {
+      "c27hg70" : {
+         "alert_price" : "499.99",
+         "desc" : "Samsung CHG70 Series 1440p 27-inch VA monitor",
+         "sold_by" : {
+            "CanadaComputers" : {
+               "prod_link" : "cPath=22_700_1104&item_id=112035",
+               "reg_price" : "749.99"
+            },
+            "NewEgg" : {
+               "prod_link" : "N82E16824022583",
+               "reg_price" : "730.33"
+            }
+         }
+      },
+      "ex2780q" : {
+         "alert_price" : "499.99",
+         "desc" : "Benq EX2780Q 1440p 27-inch IPS monitor",
+         "sold_by" : {
+            "BestBuy" : {
+               "prod_link" : "benq-27-1440p-wqhd-144hz-5ms-gtg-ips-lcd-freesync-gaming-monitor-ex2780q-black/13893428",
+               "reg_price" : "599.99"
+            },
+            "CanadaComputers" : {
+               "prod_link" : "cPath=22_700_1104&item_id=140272",
+               "reg_price" : "599.99"
+            },
+            "NewEgg" : {
+               "prod_link" : "N82E16824014661",
+               "reg_price" : "799.99"
+            }
+         }
+      }
+   },
+   "silent" : ""
+}
