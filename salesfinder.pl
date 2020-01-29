@@ -3,7 +3,7 @@
 #     File Name           :     salesfinder.pl
 #     Created By          :     jnikolich
 #     Creation Date       :     [2020-01-24 09:43]
-#     Last Modified       :     [2020-01-28 09:19]
+#     Last Modified       :     [2020-01-29 00:05]
 #     Description         :     Scrapes webstores for preconfigured sales
 #################################################################################
 # Copyright (C) 2020 James D. Nikolich
@@ -379,16 +379,19 @@ sub DoScrapes
 		if( defined $1 )
 		{
 		    my $current_price = $1;
-		    printf_IfNotSilent( "\$%8.8s ", $current_price );
+		    printf_IfNotSilent( "\$%8.8s on %s", $current_price, $current_datetime );
 		    
-		    Notify( $product, $merchant, $current_price, $current_datetime )
-			if( IsGoodDeal( $product, $current_price ) );
+		    if( IsGoodDeal( $product, $current_price ) )
+		    {
+			Notify( $product, $merchant, $current_price, $current_datetime );
+			printf_IfNotSilent( "  <-- GOOD DEAL (Alert Price = \$%s)", $alert_price );
+		    }
 		}
 		else
 		{
-		    printf_IfNotSilent("%-9.9s ", "not found" );
+		    printf_IfNotSilent("%-9.9s", "not found" );
 		}
-		printf_IfNotSilent("on %s\n", $current_datetime );
+		printf_IfNotSilent("\n" );
 	    }
 	    else
 	    {
@@ -483,10 +486,6 @@ ENDOFBODY
 		      ->transport   ( Email::Sender::Transport::SMTP->new( {
 				      host => $CFG { "mailserver" }, } )    )
 		      ->send;
-
-
-	say_IfNotSilent( "$merchant has a GOOD DEAL on $product - $current_price" .
-	    "(regularly $regular_price) as of $price_datestring.");
     }
 
     return 1;
