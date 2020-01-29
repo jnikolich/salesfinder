@@ -66,12 +66,7 @@ Once your JSON configuration is finished, save it and place it in a directory th
 
 ### Synopsis
 
-SalesFinder works by visitng various product listings you're interested in, at merchants you would like to purchase from.  For every listing you configure, It then finds the current price from that listing (using start and end delimiters), and reports on it.  Everything is configuration-driven, through the following abstract workflow:
-
-1. Configure all the merchants you want to monitor, including the base URL for their online store.
-2. Configure all the products you are interested in, including a name, description, and alert-price (more on this later).
-3. Configure all the listings you want to.  Listings represent which merchant(s) have each product you're interested in, their regular price for that product, and the product link.  In other words, *"who sells what"*.
-4. Run SalesFinder (either manually or on a scheduled basis automatically) to check all the listings you've configured.
+SalesFinder works by visitng various product listings you're interested in, at merchants you would like to purchase from.  For every listing you configure, It then finds the current price from that listing (using start and end delimiters), and (unless running silently) reports on it.
 
 When SalesFinder finds that a merchant's price for a given product has dropped down to (or below) the **alert-price** you've set for that product, SalesFinder will notify you, telling  you the product, it's price, which merchant(s) have it for that price, and the date/time the price was retrieved.  Notifications are currently via email; additional methods are envisioned down the road.
 
@@ -135,6 +130,10 @@ https://www.bestbuy.ca/en-ca/product/benq-27-1440p-wqhd-144hz-5ms-gtg-ips-lcd-fr
 
 ```
 *(email content)*
+
+### Command-Line Arguments / Options
+
+Run **```salesfinder.pl --help```** for some help and a complete list of command-line arguments/options.
 
 ## Authors
 
