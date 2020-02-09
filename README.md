@@ -24,20 +24,30 @@ In turn, WWW::Curl requires the presence of ```libcurl``` on your machine, which
 
 ## Installation
 
-### Installing SalesFinder
+### Installing the SalesFinder Main Script
 (**Note**: *These instructions are for Linux, MacOS or BSD based systems, and will require a bit of adaption for use on* Windows *systems.*) 
 
-1. Grab the [latest release from GitHub](https://github.com/jnikolich/salesfinder/releases), save it on the machine you will be running SalesFinder on, and extract the release file.
+1. Grab the [latest release from GitHub](https://github.com/jnikolich/salesfinder/releases), save it on the machine you will be running SalesFinder on, and extract the release file into a temp-directory.  Then navigate into that temp-directory.
 
 2. Take the ```salesfinder.pl``` file and move it to wherever on your filesystem you want it to be run from.  To make it reachable without specifying a full path, put it within your **```$PATH```** (on Linux/Mac systems) or **```%PATH%```** (Windows systems).  For example:
 ```bash
-   mv ./salesfinder.pl /usr/local/bin/salesfinder.pl
+   mv ./salesfinder.pl /usr/local/bin/
 ```
 3. If you want to start with an example JSON configuration in the default location, then take the ```salesfinder.json``` file and move it to **```/etc/salesfinder.json```** directory.
 ```bash
-   mv ./salesfinder.json /etc/salesfinderjson
+   mv ./salesfinder.json /etc/salesfinder/
 ```
-### Installing Perl Modules
+
+### Installing the SalesFinder Local Module
+SalesFinder contains some of its more reusable functionality in local perl modules.  (Currently this includes the debugging facility).  The module can either be installed site-wide (requiring root privileges), or locally for your user ID.  These instructions install the module into a subdirectory under your home-directory, locally for your user ID.  They also add the new subdirectory to your ```PERL5LIB``` environment variable so SalesFinder can find it:
+(**Note**: *These instructions assume you use Bash as your shell, and might need adjusting if you instead use Csh, Zsh, etc.*) 
+```bash
+mkdir -p ~/lib/perl5/site_perl
+cp -pr ./lib/SalesFinder ~/lib/perl5/site_perl/
+echo "export PERL5LIB+=:~/lib/perl5/site_perl" >>~/.bashrc
+export PERL5LIB+=:~/lib/perl5/site_perl
+```
+### Installing System-Wide Perl Modules
 Use your system's particular package manager to install the perl modules listed above in **"Prerequisites"**.  For example, on a modern Fedora system:
 ```bash
 sudo dnf install \
