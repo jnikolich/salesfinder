@@ -1,5 +1,6 @@
 {
    "configfile" : "/etc/salesfinder.json",
+   "dbfile" : "~/.salesfinder/salesfinder.db",
    "debug" : "",
    "email" : "",
    "mailserver" : "",

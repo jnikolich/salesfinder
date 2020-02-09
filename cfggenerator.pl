@@ -3,7 +3,7 @@
 #     File Name           :     cfggenerator.pl
 #     Created By          :     jnikolich
 #     Creation Date       :     [2020-01-24 23:25]
-#     Last Modified       :     [2020-01-28 09:19]
+#     Last Modified       :     [2020-02-08 23:55]
 #     Description         :     Takes a perl-data structure and does a JSON conversion
 #################################################################################
 # Copyright (C) 2020 James D. Nikolich
@@ -53,6 +53,7 @@ sub main
 	### GLOBAL OPTIONS - Affect the operation of the program in-general
 	##
 	'configfile'	=> '/etc/salesfinder.json',
+	'dbfile'	=> '~/.salesfinder/salesfinder.db',
 	'silent'	=> '',
 	'notify'	=> '',
 	'email'		=> '',

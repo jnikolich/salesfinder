@@ -3,7 +3,7 @@
 #     File Name           :     lib/Debug.pm
 #     Created By          :     jnikolich
 #     Creation Date       :     [2015-04-23 11:35]
-#     Last Modified       :     [2020-02-07 21:01]
+#     Last Modified       :     [2020-02-08 23:50]
 #     Description         :     Simple class implementing indented debug output
 #################################################################################
 # Copyright (C) 2020 James D. Nikolich
@@ -40,7 +40,6 @@ sub new
 	my $class	= ref($proto) || $proto;
 	my $self	= {};
 	$self->{_ACTIVE}	= 0;
-	#$self->{_INDENT}	= 0;
 	$self->{_INDENT}	= -1;
 	$self->{_SIZE}		= 4;
 

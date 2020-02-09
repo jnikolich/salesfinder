@@ -11,10 +11,13 @@ SalesFinder can run silently (suitable for automatic scheduling via cron or equi
 
 The main prerequisites are a perl-enabled environment that the script can run in. In addition, the following perl-modules need to be installed:
 
-* [JSON::MaybeXS](https://metacpan.org/pod/JSON::MaybeXS) - JSON wrapper with multiple fallbacks
 * [Cpanel::JSON::XS](https://metacpan.org/pod/Cpanel::JSON::XS) - Correct & fast JSON encoding/decoding
-* [GetOpt::Long](https://perldoc.perl.org/Getopt/Long.html) - Extended processing of command-line options
+* [DBI](https://metacpan.org/pod/DBI) - Database independent interface for Perl
 * [Email::Stuffer](https://metacpan.org/pod/Email::Stuffer)- (Casual module for sending simple emails)
+* [File::Basename](https://perldoc.perl.org/File/Basename.html)] - Parse file paths into directory, filename and suffix
+* [File::Path](https://perldoc.perl.org/File/Path.html) - Create or remove directory trees
+* [GetOpt::Long](https://perldoc.perl.org/Getopt/Long.html) - Extended processing of command-line options
+* [JSON::MaybeXS](https://metacpan.org/pod/JSON::MaybeXS) - JSON wrapper with multiple fallbacks
 * [WWW::Curl](https://metacpan.org/pod/WWW::Curl) - (Perl interface to libcurl)
 
 In turn, WWW::Curl requires the presence of ```libcurl``` on your machine, which is probably already the case if you have the ```curl``` tool installed.
@@ -38,10 +41,12 @@ In turn, WWW::Curl requires the presence of ```libcurl``` on your machine, which
 Use your system's particular package manager to install the perl modules listed above in **"Prerequisites"**.  For example, on a modern Fedora system:
 ```bash
 sudo dnf install \
-perl-JSON-MaybeXS \
 perl-Cpanel-JSON-XS \
-perl-WWW-Curl \
+perl-DBI \
+perl-DBD-sqlite\
 perl-Email-Stuffer \
+perl-JSON-MaybeXS \
+perl-WWW-Curl \
 perl-Getopt-Long
 ```
 ### Installing libcurl
@@ -69,6 +74,8 @@ Once your JSON configuration is finished, save it and place it in a directory th
 SalesFinder works by visitng various product listings you're interested in, at merchants you would like to purchase from.  For every listing you configure, It then finds the current price from that listing (using start and end delimiters), and (unless running silently) reports on it.
 
 When SalesFinder finds that a merchant's price for a given product has dropped down to (or below) the **alert-price** you've set for that product, SalesFinder will notify you, telling  you the product, it's price, which merchant(s) have it for that price, and the date/time the price was retrieved.  Notifications are currently via email; additional methods are envisioned down the road.
+
+SalesFinder will also log all discovered current prices for each product at each merchant into a sqlite3 database, for later use.  This happens whether or not notifications are active.  The database location is configurable, and by default is: ```~/.salesfinder/salesfinder.db```.
 
 When you invoke SalesFinder, it takes as its first command-line argument a command, followed by various optional arguments.  At present the command may be **list** or **run**.
 
